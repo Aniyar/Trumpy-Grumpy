@@ -4,8 +4,8 @@
 # is there a trampoline
 # is it unlocked
 
-level1 = [3, 0, 100, False, True]
-level2 = [5, 1, 100, False, False]
+level1 = [50, 0, 100, False, True]
+level2 = [50, 10, 100, False, False]
 level3 = [50, 10, 100, True, False]
 
 levels = [level1, level2, level3]
