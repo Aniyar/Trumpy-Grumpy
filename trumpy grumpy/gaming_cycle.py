@@ -198,9 +198,10 @@ def end_scr(group, score, saved_corn, screen, n_level, sc_lst):
                 if retry_button.check_click(event.pos):
                     game_cycle(n_level, screen, sc_lst)
                 if quit_button.check_click(event.pos):
-                    menu_scr()
-                if next_button.check_click(event.pos):
-                    game_cycle(n_level + 1, screen, sc_lst)
+                    menu_scr(sc_lst)
+                if group == win:
+                    if next_button.check_click(event.pos):
+                        game_cycle(n_level + 1, screen, sc_lst)
                 if score_button.check_click(event.pos):
                     score_table(screen, sc_lst)
 
@@ -208,6 +209,7 @@ def end_scr(group, score, saved_corn, screen, n_level, sc_lst):
 def menu_scr(sc_lst):
     # главное меню
     menu = pygame.sprite.Group()
+    buttons = pygame.sprite.Group()
     size = WIDTH, HEIGHT = 500, 500
     screen = pygame.display.set_mode(size)
 
@@ -215,11 +217,11 @@ def menu_scr(sc_lst):
     fon = pygame.transform.scale(load_image('main_menu.png'), (WIDTH, HEIGHT))
     screen.blit(fon, (0, 0))
 
-    level1_btn = LevelButton(menu, 1)
-    level2_btn = LevelButton(menu, 2)
-    level3_btn = LevelButton(menu, 3)
+    level1_btn = LevelButton(buttons , 1)
+    level2_btn = LevelButton(buttons , 2)
+    level3_btn = LevelButton(buttons , 3)
 
-    soundbtn = Button('sound_btn.png', 40, 150, menu)
+    soundbtn = Button('sound_btn.png', 40, 150, buttons )
     sound = True
 
     running = True
@@ -245,8 +247,10 @@ def menu_scr(sc_lst):
                         soundbtn.change_image('no_sound_btn.png')
                         pygame.mixer.music.pause()
 
+        buttons.update()
         menu.update()
         menu.draw(screen)
+        buttons.draw(screen)
         pygame.display.flip()
 
 
