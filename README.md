@@ -1,5 +1,6 @@
 # Trumpy-Grumpy
 
+A pygame project dedicated to President Trump's election promise to build a wall between USA and Mexico
 
 link to presentation:
 
